@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
 
 const clientSchema = new mongoose.Schema({
-    firstname : {
+    fname : {
         type: String,
         required: true,
     },
-    lastname : {
+    lname : {
         type: String,
         required: true,
     },
@@ -27,7 +27,7 @@ const clientSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    // 
+    //date: {timestamps : true}
 });
  
 

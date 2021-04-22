@@ -13,8 +13,8 @@ const postClient = async (req, res) => {
     const client = new Client({
       // créer des nouveaux clients
   
-      firstname: req.body.firstname,
-      lastname: req.body.lastname,
+      fname: req.body.fname,
+      lname: req.body.lname,
       email: req.body.email,
       phone: req.body.phone,
       message: req.body.message,
