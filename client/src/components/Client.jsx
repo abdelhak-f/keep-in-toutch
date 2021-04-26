@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from "react";
+import {Link} from "react-router-dom";
 
 function Tables() {
     const [clients, setClient] = useState([{
@@ -15,7 +16,7 @@ function Tables() {
                 return res.json()
             }
         }).then(jsonRes => setClient(jsonRes));
-    })
+    },[])
     return<div className="wrapper ">
     <div className="container mt-3">
     <h1> All Clients</h1>
@@ -47,6 +48,7 @@ function Tables() {
              <td>
                  {client.message}
              </td>
+             <button><Link className="" to={`/sendmail/${client._id}`} >send mail</Link></button>
              </tr>
                 )} 
             </tbody>

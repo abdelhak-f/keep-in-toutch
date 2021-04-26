@@ -1,6 +1,11 @@
+const smtpTransport = require('nodemailer-smtp-transport');
+const nodemailer = require('nodemailer');
 const Client = require("../models/Client.model");
 
-const getClient = async (req, res) => {
+
+
+// get all contact
+exports.getClient = async (req, res) => {
   try {
     const client = await Client.find();
     res.json(client);
@@ -9,7 +14,8 @@ const getClient = async (req, res) => {
   }
 };
 
-const postClient = async (req, res) => {
+// Post te client to mongodb
+exports.postClient = async (req, res) => {
     const client = new Client({
       // créer des nouveaux clients
   
@@ -27,8 +33,53 @@ const postClient = async (req, res) => {
     }
   };
 
+  
+  const transporter = nodemailer.createTransport(
+    smtpTransport({
+      host: 'smtp.gmail.com',
+      auth: {
+        type: 'custom',
+        user: process.env.EMAIL,
+        pass: process.env.PASSWORD,
+      },
+    })
+  );
+  exports.replyContact = async (req, res) => {
+    const { id } = req.params;
+    const { message } = req.body;
+    // console.log(message);
+    try {
+      const currentContact = await Client.findOne({ _id: id });
+      if (currentContact) {
+        const mailOptions = {
+          from: process.env.EMAIL,
+          to: currentContact.email,
+          subject: 'Mail',
+          text: message,
+        };
+        const envoiMail = await transporter.sendMail(mailOptions);
+        if (envoiMail) return  res.status(200).json('Mail sent');
+      }
+    } catch (error) {
+      return res.status(500).json(error);
+    }
+  };
 
-module.exports = {
-    getClient,
-    postClient
-}
+
+  exports.singleContact = async (req, res) => {
+    const { id } = req.params;
+    console.log(id)
+    try {
+      const currentContact = await Client.findOne({ _id: id });
+      if (currentContact) return res.status(200).json(currentContact);
+    } catch (error) {
+      return res.status(500).json(error);
+    }
+  };
+
+    
+
+// module.exports = {
+//     getClient,
+//     postClient
+// }

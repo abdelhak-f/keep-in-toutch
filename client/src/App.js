@@ -6,6 +6,7 @@ import Navbar from "./components/Navbar";
 import Home from "./components/Home";
 import Client from "./components/Client";
 import CreateClient from "./components/CreateClient";
+import SendMail from "./components/SendMail";
 
 
 function App() {  
@@ -14,7 +15,7 @@ function App() {
   
     <Navbar/>
  
-     <Route path="/" exact>
+     <Route exact path="/" >
          <Home />
      </Route>
      <Route path="/client">
@@ -23,6 +24,7 @@ function App() {
      <Route path="/create">
          <CreateClient />
      </Route>
+     <Route path="/sendmail/:id" component={SendMail}/>
      
    </Router>
       

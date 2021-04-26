@@ -7,7 +7,9 @@ function Navbar() {
      <h4><Link className="link" to='/'>Home</Link></h4>
      <h4><Link className="link" to='/client'>Client</Link></h4>
      <h4><Link className="link" to='/create'>Contact</Link></h4>
+     {/* <h4><Link className="link" to='/sendmail'>sendmail</Link></h4> */}
   </nav>
+
 }
 
  export default Navbar;
