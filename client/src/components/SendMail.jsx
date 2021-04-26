@@ -5,7 +5,6 @@ import axios from 'axios'
 
 
 function SendMail(props) {
-  console.log(props);
   const {id} = useParams()
   // console.log(id);
   const [message,setMessage] = useState('')
@@ -13,7 +12,7 @@ function SendMail(props) {
     e.preventDefault();
     try {
         const res = await axios.post(`http://localhost:5000/reply/${id}`,{message});
-        if(res) props.history.push('/');
+        if(res) props.history.push('/client');
       } catch (error) {
         if(error) console.log(error.response);
       }
@@ -37,6 +36,8 @@ function SendMail(props) {
   useEffect(()=>{
     getContact()
   },[])
+
+  
 
   return (
 

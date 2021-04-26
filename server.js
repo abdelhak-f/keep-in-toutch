@@ -6,8 +6,7 @@ const app = express();
 const clientRouter = require("./routes/Client.route");
 app.use(cors());
 // connecter a la base de donnée
-mongoose
-  .connect(process.env.MONGO_URL, {
+mongoose.connect(process.env.MONGO_URL, {
     useUnifiedTopology: true,
     useNewUrlParser: true,
     useCreateIndex: true,

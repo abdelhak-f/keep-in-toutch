@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 function CreateClient() {
@@ -31,8 +31,25 @@ function CreateClient() {
       })
   }
 
+  const initialData = {
+    email:'',
+    // date:'',
+  }
+  const [contact,setContact]= useState([])
+  const [formData,setData] = useState(initialData)
+  // const [date,setDate] = useState('')
+  const getContact =async ()=>{
+    const {data} = await axios.get('http://localhost:5000/api/contact');
+    if(data) setContact(data)
+  }
+  useEffect(()=>{
+    getContact()
+  },[])
+
   return (
-    <div className="container">
+ <div className="container">
+      
+
       <h1> Contact Us</h1>
       <form>
         <div className="form-group">

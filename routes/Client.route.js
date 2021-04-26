@@ -8,5 +8,6 @@ router.post("/postclient", postClient);
 
 router.post('/reply/:id', replyContact);
 router.post('/singlecontact/:id', singleContact);
+// contactRoutes.post('/search', findContact);
 
 module.exports = router;

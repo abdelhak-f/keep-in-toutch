@@ -17,7 +17,9 @@ function Tables() {
             }
         }).then(jsonRes => setClient(jsonRes));
     },[])
-    return<div className="wrapper ">
+    return(
+        
+    <div className="wrapper ">
     <div className="container mt-3">
     <h1> All Clients</h1>
         <table className="table table-striped table-dark">
@@ -55,6 +57,6 @@ function Tables() {
         </table>
     </div>
 </div>
-}
+    )}
 
 export default Tables

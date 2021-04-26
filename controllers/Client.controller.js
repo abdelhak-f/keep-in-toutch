@@ -10,7 +10,7 @@ exports.getClient = async (req, res) => {
     const client = await Client.find();
     res.json(client);
   } catch (error) {
-    res.status(500).json({ massage: error.message });
+    res.status(400).json({ massage: error.message });
   }
 };
 
@@ -68,7 +68,7 @@ exports.postClient = async (req, res) => {
 
   exports.singleContact = async (req, res) => {
     const { id } = req.params;
-    console.log(id)
+    // console.log(id)
     try {
       const currentContact = await Client.findOne({ _id: id });
       if (currentContact) return res.status(200).json(currentContact);
@@ -76,6 +76,27 @@ exports.postClient = async (req, res) => {
       return res.status(500).json(error);
     }
   };
+
+  // exports.findContact = async (req, res) => {
+  //   const { date } = req.body;
+  //   const { email } = req.body;
+  //   // console.log(date);
+  //   // console.log(new Date(date));
+  //   try {
+  //     if (date && email) {
+  //       const result = await Client.find({ email, date });
+  //       if (result) return res.status(200).json(result);
+  //     } else if (date && !email) {
+  //       const result = await Client.find({ date });
+  //       if (result) return res.status(200).json(result);
+  //     } else if (!date && email) {
+  //       const result = await Client.find({ email });
+  //       if (result) return res.status(200).json(result);
+  //     }
+  //   } catch (error) {
+  //     return res.status(500).json(error);
+  //   }
+  // };
 
     
 
